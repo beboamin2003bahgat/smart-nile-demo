@@ -3,7 +3,18 @@ import random
 import pandas as pd
 
 st.set_page_config(page_title="Smart Nile", layout="wide")
+st.markdown("""
+<style>
+/* اخفاء الهيدر بالكامل */
+header {visibility: hidden;}
 
+/* اخفاء الفوتر بالكامل */
+footer {visibility: hidden;}
+
+/* اخفاء كلمة Hosted with Streamlit */
+div[data-testid="stDecoration"] {display: none;}
+</style>
+""", unsafe_allow_html=True)
 # ===== STYLE =====
 st.markdown("""
 <style>
