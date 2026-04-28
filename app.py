@@ -1,50 +1,44 @@
 import streamlit as st
 import random
+import pandas as pd
 
 st.set_page_config(page_title="Smart Nile", layout="wide")
 
-# ===== BACKGROUND + STYLE =====
+# ===== STYLE =====
 st.markdown("""
 <style>
 [data-testid="stAppViewContainer"] {
     background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-    color: white;
 }
 h1, h2, h3 {
     color: #00e0ff;
 }
-p {
-    color: #ffffff;
+p, li {
+    color: white;
     font-size: 18px;
-}
-.block-container {
-    padding-top: 2rem;
 }
 </style>
 """, unsafe_allow_html=True)
 
-# =========================
-# 🌊 TITLE
-# =========================
-st.markdown("<h1 style='text-align: center;'>🌊 Smart Nile Monitoring System</h1>", unsafe_allow_html=True)
+# ===== TITLE =====
+st.markdown("<h1 style='text-align:center;'>🌊 Smart Nile Monitoring System</h1>", unsafe_allow_html=True)
 
 st.markdown("---")
 
 # =========================
 # 📌 INTRO
 # =========================
-st.markdown("<h2>📌 Project Overview</h2>", unsafe_allow_html=True)
+st.header("📌 Project Overview")
 
 st.write("""
-This project is a smart system that monitors the Nile River using sensors and AI technology.
-It helps detect pollution, monitor water quality, and identify harmful plants.
+The Nile River faces serious environmental problems such as pollution and the spread of harmful plants like Water Hyacinth.
+
+This project introduces a smart system that monitors water quality using sensors, GPS, and AI.
 """)
 
 # =========================
-# 🌿 IMAGES (FIXED LINKS)
+# 🌿 IMAGES
 # =========================
-st.markdown("<h2>🌿 Nile Environment</h2>", unsafe_allow_html=True)
-
 col1, col2 = st.columns(2)
 
 col1.image("https://upload.wikimedia.org/wikipedia/commons/6/6f/Water_hyacinth.jpg",
@@ -56,38 +50,50 @@ col2.image("https://upload.wikimedia.org/wikipedia/commons/2/2f/Nile_River.jpg",
 # =========================
 # ⚙️ COMPONENTS
 # =========================
-st.markdown("<h2>⚙️ System Components</h2>", unsafe_allow_html=True)
+st.header("⚙️ System Components")
 
 st.write("""
-📊 Sensors:
-- Temperature  
-- Turbidity  
-- TDS  
-- pH  
-- Ammonia  
+🔹 Sensors:
+- Temperature
+- Turbidity
+- TDS
+- pH
+- Ammonia
 
-📷 AI Camera:
-- Detects harmful plants  
+🔹 AI Camera:
+Detects harmful plants such as Water Hyacinth
 
-📍 GPS:
-- Tracks location  
+🔹 GPS:
+Tracks location in the Nile
 """)
 
 # =========================
-# 🎯 GOAL
+# 🎯 OBJECTIVE
 # =========================
-st.markdown("<h2>🎯 Project Goal</h2>", unsafe_allow_html=True)
+st.header("🎯 Project Objective")
 
 st.write("""
-Protect the Nile River by detecting pollution early and monitoring water quality in real-time.
+Monitor water quality in real-time and detect pollution early to protect the Nile ecosystem.
 """)
 
 st.markdown("---")
 
 # =========================
+# 🗺 GPS MAP
+# =========================
+st.header("🗺 Live Location")
+
+df = pd.DataFrame({
+    'lat': [30.0444],
+    'lon': [31.2357]
+})
+
+st.map(df)
+
+# =========================
 # 📊 DASHBOARD
 # =========================
-st.markdown("<h2>📊 Live Dashboard</h2>", unsafe_allow_html=True)
+st.header("📊 Live Sensors Data")
 
 col1, col2, col3 = st.columns(3)
 
@@ -103,31 +109,29 @@ col3.metric("📍 Location", "Cairo, Nile")
 # =========================
 # 📷 AI DETECTION
 # =========================
-st.markdown("<h2>📷 AI Detection</h2>", unsafe_allow_html=True)
+st.header("📷 AI Plant Detection")
 
 st.image("https://upload.wikimedia.org/wikipedia/commons/6/6f/Water_hyacinth.jpg")
-
 st.success("Detected: Water Hyacinth (ورد النيل)")
-st.warning("⚠️ This indicates pollution")
+st.warning("⚠️ This plant indicates pollution")
 
 # =========================
-# 🤖 CHATBOT
+# 🤖 CHATBOT (FAKE UI)
 # =========================
-st.markdown("<h2>🤖 Smart Assistant</h2>", unsafe_allow_html=True)
+st.sidebar.title("🤖 Chatbot")
 
-user = st.text_input("Ask about water quality...")
+msg = st.sidebar.text_input("Ask something...")
 
-if user:
-    st.write("System is working normally ✅")
+if msg:
+    st.sidebar.write("System is working normally ✅")
 
 # =========================
-# 💡 RECOMMENDATIONS
+# 💡 CONCLUSION
 # =========================
-st.markdown("<h2>💡 Recommendations</h2>", unsafe_allow_html=True)
+st.header("💡 Conclusion")
 
 st.write("""
-- Reduce industrial waste  
-- Monitor plants regularly  
-- Improve water treatment  
-- Increase awareness  
+This system provides a smart solution to monitor the Nile River using sensors and AI.
+
+It helps reduce pollution, detect harmful plants, and protect the environment.
 """)
