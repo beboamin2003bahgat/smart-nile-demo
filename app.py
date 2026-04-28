@@ -4,134 +4,124 @@ import pandas as pd
 
 st.set_page_config(page_title="Smart Nile", layout="wide")
 
-# ===== STYLE =====
+# ===== LIGHT STYLE =====
 st.markdown("""
 <style>
 [data-testid="stAppViewContainer"] {
-    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    background-color: #f5f7fa;
 }
-h1, h2, h3 {
-    color: #00e0ff;
+h1 {
+    color: #0077b6;
+    text-align: center;
+}
+h2 {
+    color: #023e8a;
 }
 p, li {
-    color: white;
     font-size: 18px;
+    color: #333;
 }
 </style>
 """, unsafe_allow_html=True)
 
-# ===== TITLE =====
-st.markdown("<h1 style='text-align:center;'>🌊 Smart Nile Monitoring System</h1>", unsafe_allow_html=True)
-
-st.markdown("---")
-
-# =========================
-# 📌 INTRO
-# =========================
-st.header("📌 Project Overview")
-
-st.write("""
-The Nile River faces serious environmental problems such as pollution and the spread of harmful plants like Water Hyacinth.
-
-This project introduces a smart system that monitors water quality using sensors, GPS, and AI.
-""")
+# ===== NAVIGATION =====
+page = st.sidebar.radio("📌 Navigate", [
+    "🏠 Home",
+    "⚠️ Problem",
+    "💡 Solution",
+    "⚙️ Components",
+    "📊 Dashboard"
+])
 
 # =========================
-# 🌿 IMAGES
+# 🏠 HOME
 # =========================
-col1, col2 = st.columns(2)
+if page == "🏠 Home":
+    st.title("🌊 Smart Nile Monitoring System")
 
-col1.image("https://upload.wikimedia.org/wikipedia/commons/6/6f/Water_hyacinth.jpg",
-           caption="Water Hyacinth (ورد النيل)")
+    st.image("https://upload.wikimedia.org/wikipedia/commons/2/2f/Nile_River.jpg")
 
-col2.image("https://upload.wikimedia.org/wikipedia/commons/2/2f/Nile_River.jpg",
-           caption="Nile River")
+    st.write("""
+    A smart system designed to monitor the Nile River using sensors, AI, and GPS technology.
+    
+    Our goal is to detect pollution early and protect the environment.
+    """)
+
+# =========================
+# ⚠️ PROBLEM
+# =========================
+elif page == "⚠️ Problem":
+    st.header("⚠️ The Problem")
+
+    st.write("""
+    The Nile River faces serious challenges such as:
+    - Water pollution
+    - Spread of harmful plants
+    - Decreasing water quality
+    """)
+
+    st.image("https://upload.wikimedia.org/wikipedia/commons/6/6f/Water_hyacinth.jpg",
+             caption="Water Hyacinth (ورد النيل)")
+
+# =========================
+# 💡 SOLUTION
+# =========================
+elif page == "💡 Solution":
+    st.header("💡 Our Solution")
+
+    st.write("""
+    We developed a smart system that:
+    - Monitors water quality using sensors
+    - Detects harmful plants using AI
+    - Tracks location using GPS
+    """)
 
 # =========================
 # ⚙️ COMPONENTS
 # =========================
-st.header("⚙️ System Components")
+elif page == "⚙️ Components":
+    st.header("⚙️ System Components")
 
-st.write("""
-🔹 Sensors:
-- Temperature
-- Turbidity
-- TDS
-- pH
-- Ammonia
+    col1, col2, col3 = st.columns(3)
 
-🔹 AI Camera:
-Detects harmful plants such as Water Hyacinth
+    col1.write("""
+    📊 Sensors:
+    - Temperature
+    - Turbidity
+    - TDS
+    - pH
+    - Ammonia
+    """)
 
-🔹 GPS:
-Tracks location in the Nile
-""")
+    col2.write("""
+    📷 AI Camera:
+    Detects plants like Water Hyacinth
+    """)
 
-# =========================
-# 🎯 OBJECTIVE
-# =========================
-st.header("🎯 Project Objective")
-
-st.write("""
-Monitor water quality in real-time and detect pollution early to protect the Nile ecosystem.
-""")
-
-st.markdown("---")
-
-# =========================
-# 🗺 GPS MAP
-# =========================
-st.header("🗺 Live Location")
-
-df = pd.DataFrame({
-    'lat': [30.0444],
-    'lon': [31.2357]
-})
-
-st.map(df)
+    col3.write("""
+    📍 GPS Module:
+    Tracks location in Nile
+    """)
 
 # =========================
 # 📊 DASHBOARD
 # =========================
-st.header("📊 Live Sensors Data")
+elif page == "📊 Dashboard":
+    st.header("📊 Live Monitoring")
 
-col1, col2, col3 = st.columns(3)
+    df = pd.DataFrame({
+        'lat': [30.0444],
+        'lon': [31.2357]
+    })
+    st.map(df)
 
-col1.metric("🌡 Temperature", f"{random.randint(25,32)} °C")
-col2.metric("💧 Turbidity", f"{random.randint(2,8)} NTU")
-col3.metric("⚡ TDS", f"{random.randint(200,400)} ppm")
+    col1, col2, col3 = st.columns(3)
 
-col1, col2, col3 = st.columns(3)
-col1.metric("🧪 pH", "7.2")
-col2.metric("☣ Ammonia", "1 mg/L")
-col3.metric("📍 Location", "Cairo, Nile")
+    col1.metric("Temperature", f"{random.randint(25,32)} °C")
+    col2.metric("Turbidity", f"{random.randint(2,8)} NTU")
+    col3.metric("TDS", f"{random.randint(200,400)} ppm")
 
-# =========================
-# 📷 AI DETECTION
-# =========================
-st.header("📷 AI Plant Detection")
+    st.subheader("📷 AI Detection")
+    st.image("https://upload.wikimedia.org/wikipedia/commons/6/6f/Water_hyacinth.jpg")
 
-st.image("https://upload.wikimedia.org/wikipedia/commons/6/6f/Water_hyacinth.jpg")
-st.success("Detected: Water Hyacinth (ورد النيل)")
-st.warning("⚠️ This plant indicates pollution")
-
-# =========================
-# 🤖 CHATBOT (FAKE UI)
-# =========================
-st.sidebar.title("🤖 Chatbot")
-
-msg = st.sidebar.text_input("Ask something...")
-
-if msg:
-    st.sidebar.write("System is working normally ✅")
-
-# =========================
-# 💡 CONCLUSION
-# =========================
-st.header("💡 Conclusion")
-
-st.write("""
-This system provides a smart solution to monitor the Nile River using sensors and AI.
-
-It helps reduce pollution, detect harmful plants, and protect the environment.
-""")
+    st.success("Detected: Water Hyacinth")
