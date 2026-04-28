@@ -158,3 +158,9 @@ st.header("💡 Conclusion")
 st.write("""
 This system helps monitor water quality, detect pollution early, and protect the Nile using smart technology.
 """)
+st.markdown("""
+<style>
+footer {visibility: hidden;}
+header {visibility: hidden;}
+</style>
+""", unsafe_allow_html=True)
