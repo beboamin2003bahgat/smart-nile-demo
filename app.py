@@ -8,57 +8,121 @@ st.markdown("""
 <style>
 body {background-color: #0e1117;}
 h1, h2, h3, p {color: white;}
+.block-container {padding-top: 2rem;}
 </style>
 """, unsafe_allow_html=True)
 
-# ===== SESSION =====
-if "start" not in st.session_state:
-    st.session_state.start = False
+# =========================
+# 🌊 TITLE
+# =========================
+st.title("🌊 Smart Nile Monitoring System")
 
-# ================= INTRO =================
-if not st.session_state.start:
+st.markdown("---")
 
-    st.title("🌊 Smart Nile Monitoring System")
+# =========================
+# 📌 INTRO (PRESENTATION)
+# =========================
+st.header("📌 Project Overview")
 
-    st.subheader("📌 What is this project?")
-    st.write("A smart system to monitor Nile water quality using sensors and AI.")
+st.write("""
+This project is a smart system designed to monitor the Nile River using sensors and artificial intelligence.
 
-    col1, col2, col3 = st.columns(3)
+It helps in:
+- Detecting water pollution
+- Monitoring water quality
+- Identifying harmful plants like Water Hyacinth
+""")
 
-    col1.image("https://images.unsplash.com/photo-1581090700227-1e8a1bcb5d9b")
-    col2.image("https://images.unsplash.com/photo-1506744038136-46273834b3fb")
-    col3.image("https://images.unsplash.com/photo-1470770841072-f978cf4d019e")
+# =========================
+# 🌿 IMAGES
+# =========================
+st.header("🌿 Nile Environment")
 
-    st.subheader("⚙️ System Components")
-    st.write("""
-    - Sensors: pH, Turbidity, Temperature, TDS, Ammonia  
-    - AI Camera: Detects plants  
-    - GPS: Tracks location  
-    """)
+col1, col2 = st.columns(2)
 
-    st.subheader("🎯 Goal")
-    st.write("Protect the Nile and detect pollution early.")
+col1.image("https://upload.wikimedia.org/wikipedia/commons/6/6f/Water_hyacinth.jpg", caption="Water Hyacinth (ورد النيل)")
+col2.image("https://upload.wikimedia.org/wikipedia/commons/e/e3/Nile_River_map.jpg", caption="Nile River")
 
-    if st.button("🚀 Start System"):
-        st.session_state.start = True
-        st.rerun()
+# =========================
+# ⚙️ COMPONENTS
+# =========================
+st.header("⚙️ System Components")
 
-# ================= DASHBOARD =================
-else:
+st.write("""
+🔹 Sensors:
+- Temperature  
+- Turbidity  
+- TDS  
+- pH  
+- Ammonia  
 
-    st.title("📊 Live Dashboard")
+🔹 AI Camera:
+- Detects harmful plants  
 
-    col1, col2, col3 = st.columns(3)
+🔹 GPS:
+- Tracks location in the Nile  
+""")
 
-    col1.metric("Temperature", f"{random.randint(25,32)} °C")
-    col2.metric("Turbidity", f"{random.randint(2,8)} NTU")
-    col3.metric("TDS", f"{random.randint(200,400)} ppm")
+# =========================
+# 🎯 GOAL
+# =========================
+st.header("🎯 Project Goal")
 
-    st.subheader("📷 AI Detection")
-    st.image("https://images.unsplash.com/photo-1501004318641-b39e6451bec6")
-    st.success("Detected: Water Plant")
+st.write("""
+To protect the Nile River by detecting pollution early and monitoring water quality in real-time.
+""")
 
-    st.subheader("🤖 Chatbot")
-    user = st.text_input("Ask anything...")
-    if user:
-        st.write("System is working fine ✅")
+st.markdown("---")
+
+# =========================
+# 📊 DASHBOARD (AT THE END)
+# =========================
+st.header("📊 Live System Dashboard")
+
+# Sensors
+col1, col2, col3 = st.columns(3)
+
+col1.metric("🌡 Temperature", f"{random.randint(25,32)} °C")
+col2.metric("💧 Turbidity", f"{random.randint(2,8)} NTU")
+col3.metric("⚡ TDS", f"{random.randint(200,400)} ppm")
+
+col1, col2, col3 = st.columns(3)
+col1.metric("🧪 pH", "7.2")
+col2.metric("☣ Ammonia", "1 mg/L")
+col3.metric("📍 Location", "Cairo, Nile")
+
+# =========================
+# 📷 AI DETECTION
+# =========================
+st.subheader("📷 AI Plant Detection")
+
+st.image("https://upload.wikimedia.org/wikipedia/commons/6/6f/Water_hyacinth.jpg")
+st.success("Detected: Water Hyacinth (ورد النيل)")
+st.warning("⚠️ This indicates possible pollution")
+
+# =========================
+# 🤖 CHATBOT
+# =========================
+st.subheader("🤖 Smart Assistant")
+
+user = st.text_input("Ask about water quality...")
+
+if user:
+    if "ph" in user.lower():
+        st.write("pH is normal ✅")
+    elif "pollution" in user.lower():
+        st.write("Pollution level is moderate ⚠️")
+    else:
+        st.write("System is working normally 👍")
+
+# =========================
+# 💡 RECOMMENDATIONS
+# =========================
+st.subheader("💡 Recommendations")
+
+st.write("""
+- Reduce industrial waste dumping  
+- Monitor harmful plants regularly  
+- Improve water treatment systems  
+- Increase environmental awareness  
+""")
