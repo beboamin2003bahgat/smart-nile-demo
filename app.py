@@ -8,13 +8,6 @@ st.markdown("""
 <style>
 body {background-color: #0e1117;}
 h1, h2, h3, p {color: white;}
-.stButton>button {
-    background-color: #00adb5;
-    color: white;
-    border-radius: 12px;
-    height: 3em;
-    width: 200px;
-}
 </style>
 """, unsafe_allow_html=True)
 
@@ -22,89 +15,50 @@ h1, h2, h3, p {color: white;}
 if "start" not in st.session_state:
     st.session_state.start = False
 
-# =========================
-# 🟢 INTRO PAGE
-# =========================
+# ================= INTRO =================
 if not st.session_state.start:
 
     st.title("🌊 Smart Nile Monitoring System")
 
     st.subheader("📌 What is this project?")
+    st.write("A smart system to monitor Nile water quality using sensors and AI.")
 
-    st.write("""
-    A smart system designed to monitor the Nile River using sensors and artificial intelligence.
-    It helps detect pollution and harmful plants in real-time.
-    """)
-
-    # ===== IMAGES SECTION =====
     col1, col2, col3 = st.columns(3)
 
-    col1.image("https://upload.wikimedia.org/wikipedia/commons/3/3f/PH_Scale.svg", caption="pH Sensor")
-    col2.image("https://upload.wikimedia.org/wikipedia/commons/6/6f/Water_hyacinth.jpg", caption="Water Hyacinth")
-    col3.image("https://upload.wikimedia.org/wikipedia/commons/e/e3/Nile_River_map.jpg", caption="Nile Location")
+    col1.image("https://images.unsplash.com/photo-1581090700227-1e8a1bcb5d9b")
+    col2.image("https://images.unsplash.com/photo-1506744038136-46273834b3fb")
+    col3.image("https://images.unsplash.com/photo-1470770841072-f978cf4d019e")
 
     st.subheader("⚙️ System Components")
-
     st.write("""
-    - 📊 Sensors: pH, Turbidity, Temperature, TDS, Ammonia  
-    - 📷 AI Camera: Detects harmful plants (like Water Hyacinth)  
-    - 📍 GPS: Tracks location in the Nile  
+    - Sensors: pH, Turbidity, Temperature, TDS, Ammonia  
+    - AI Camera: Detects plants  
+    - GPS: Tracks location  
     """)
 
-    st.subheader("🎯 Project Goal")
-    st.write("Reduce pollution and protect the Nile using smart monitoring.")
+    st.subheader("🎯 Goal")
+    st.write("Protect the Nile and detect pollution early.")
 
-    st.markdown("---")
-
-    if st.button("🚀 Start Live System"):
+    if st.button("🚀 Start System"):
         st.session_state.start = True
         st.rerun()
 
-# =========================
-# 🔵 DASHBOARD
-# =========================
+# ================= DASHBOARD =================
 else:
 
-    st.title("📊 Live Monitoring Dashboard")
-
-    # ===== SENSORS =====
-    st.subheader("📊 Sensors Readings")
+    st.title("📊 Live Dashboard")
 
     col1, col2, col3 = st.columns(3)
 
-    col1.metric("🌡 Temperature", f"{random.randint(25,32)} °C")
-    col2.metric("💧 Turbidity", f"{random.randint(2,8)} NTU")
-    col3.metric("⚡ TDS", f"{random.randint(200,400)} ppm")
+    col1.metric("Temperature", f"{random.randint(25,32)} °C")
+    col2.metric("Turbidity", f"{random.randint(2,8)} NTU")
+    col3.metric("TDS", f"{random.randint(200,400)} ppm")
 
-    col1, col2, col3 = st.columns(3)
-    col1.metric("🧪 pH", "7.2")
-    col2.metric("☣ Ammonia", "1 mg/L")
-    col3.metric("📍 Location", "Cairo, Nile")
-
-    # ===== MAP =====
-    st.subheader("🗺 Location Map")
-    st.image("https://upload.wikimedia.org/wikipedia/commons/e/e3/Nile_River_map.jpg")
-
-    # ===== AI DETECTION =====
     st.subheader("📷 AI Detection")
-    st.image("https://upload.wikimedia.org/wikipedia/commons/6/6f/Water_hyacinth.jpg")
-    st.success("Detected: Water Hyacinth (ورد النيل)")
-    st.warning("⚠️ This plant indicates pollution")
+    st.image("https://images.unsplash.com/photo-1501004318641-b39e6451bec6")
+    st.success("Detected: Water Plant")
 
-    # ===== CHATBOT =====
-    st.subheader("🤖 Smart Assistant")
-
-    user = st.text_input("Ask about water quality...")
-
+    st.subheader("🤖 Chatbot")
+    user = st.text_input("Ask anything...")
     if user:
-        if "ph" in user.lower():
-            st.write("pH level is normal ✅")
-        elif "pollution" in user.lower():
-            st.write("Pollution is moderate ⚠️")
-        elif "plant" in user.lower():
-            st.write("Detected plant is Water Hyacinth 🌿")
-        else:
-            st.write("System is working normally 👍")
-
-    if st.button("🔄 Refresh Data"):
-        st.rerun()
+        st.write("System is working fine ✅")
