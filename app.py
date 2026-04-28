@@ -4,63 +4,80 @@ import pandas as pd
 
 st.set_page_config(page_title="Smart Nile", layout="wide")
 
-# ===== DARK STYLE (شيك جدًا) =====
+# ===== CLEAN DARK STYLE =====
 st.markdown("""
 <style>
 [data-testid="stAppViewContainer"] {
-    background: linear-gradient(to right, #0a0f1c, #111827);
-    color: white;
+    background: #0b132b;
+}
+.block-container {
+    padding-top: 2rem;
 }
 h1 {
-    text-align: center;
-    color: #00c3ff;
-    font-size: 50px;
+    text-align:center;
+    color:#5bc0be;
+    font-size:48px;
 }
 h2 {
-    color: #4cc9f0;
-    margin-top: 40px;
+    color:#f1faee;
+    margin-top:50px;
 }
 p, li {
-    font-size: 20px;
-    color: #e5e7eb;
+    color:#e0fbfc;
+    font-size:19px;
 }
 hr {
-    border: 1px solid #333;
+    border:1px solid #1c2541;
 }
 </style>
 """, unsafe_allow_html=True)
 
 # =========================
-# 🌊 TITLE
+# 🌊 INTRO (HOOK)
 # =========================
 st.markdown("<h1>🌊 Smart Nile Monitoring System</h1>", unsafe_allow_html=True)
 
-st.image("https://images.unsplash.com/photo-1508780709619-79562169bc64")
-
 st.write("""
-The Nile River is one of the most important water resources in the world, especially for Egypt. 
-However, it is currently facing serious environmental challenges that threaten water quality and aquatic life.
+The Nile River is the main source of life in Egypt.  
+But today, it faces increasing pollution and environmental threats that affect water quality and aquatic life.
 """)
+
+st.image("https://upload.wikimedia.org/wikipedia/commons/2/2f/Nile_River.jpg")
 
 st.markdown("<hr>", unsafe_allow_html=True)
 
 # =========================
-# ⚠️ PROBLEM (شرح قوي)
+# ⚠️ PROBLEM
 # =========================
 st.markdown("<h2>⚠️ The Problem</h2>", unsafe_allow_html=True)
 
 st.write("""
-One of the major problems in the Nile River is the uncontrolled spread of aquatic plants such as **Water Hyacinth (ورد النيل)**.
+One of the most serious problems is the uncontrolled spread of **Water Hyacinth (ورد النيل)**.
 
-These plants:
-- Grow very quickly in polluted water  
-- Block sunlight from reaching underwater organisms  
-- Reduce oxygen levels in water  
-- Cause fish death and damage biodiversity  
-- Block water flow and affect navigation  
+This plant:
+- Grows very fast in polluted water  
+- Blocks sunlight  
+- Reduces oxygen in water  
+- Causes fish death  
+- Affects navigation and water flow  
 """)
 
-st.image("https://images.unsplash.com/photo-1598514982842-7a6c2c3b6e43")
+st.image("https://upload.wikimedia.org/wikipedia/commons/6/6f/Water_hyacinth.jpg")
+
+st.markdown("<hr>", unsafe_allow_html=True)
+
+# =========================
+# 💥 IMPACT
+# =========================
+st.markdown("<h2>💥 Impact on Environment</h2>", unsafe_allow_html=True)
+
+st.write("""
+These problems lead to:
+- Loss of aquatic life  
+- Poor water quality  
+- Environmental imbalance  
+- Increased cost of water treatment  
+""")
 
 st.markdown("<hr>", unsafe_allow_html=True)
 
@@ -70,50 +87,57 @@ st.markdown("<hr>", unsafe_allow_html=True)
 st.markdown("<h2>💡 Our Solution</h2>", unsafe_allow_html=True)
 
 st.write("""
-To solve this problem, we designed a **Smart Monitoring System** that can analyze water conditions in real-time.
+We designed a smart system that monitors the Nile in real-time using sensors, AI, and GPS.
 
-The system works by:
-- Collecting data from multiple sensors  
-- Using AI to detect harmful plants  
-- Sending data to a live monitoring dashboard  
+The system can:
+- Measure water quality  
+- Detect harmful plants  
+- Track location  
+- Send data to a dashboard  
 """)
 
 st.markdown("<hr>", unsafe_allow_html=True)
 
 # =========================
-# ⚙️ COMPONENTS (مفصل)
+# ⚙️ COMPONENTS
 # =========================
 st.markdown("<h2>⚙️ System Components</h2>", unsafe_allow_html=True)
 
-st.write("""
-🔹 **Sensors:**
-- Temperature → measures water temperature  
-- Turbidity → detects water clarity (pollution level)  
-- TDS → measures dissolved solids  
-- pH → measures acidity/alkalinity  
-- Ammonia → detects toxic substances  
+col1, col2, col3 = st.columns(3)
 
-🔹 **AI Camera:**
-- Captures images of water surface  
-- Detects plants like Water Hyacinth  
+col1.write("""
+📊 **Sensors**
+- Temperature  
+- Turbidity  
+- TDS  
+- pH  
+- Ammonia  
+""")
 
-🔹 **GPS Module:**
-- Tracks system location in the Nile  
+col2.write("""
+📷 **AI Camera**
+- Detects Water Hyacinth  
+- Identifies pollution indicators  
+""")
+
+col3.write("""
+📍 **GPS Module**
+- Tracks system location  
 """)
 
 st.markdown("<hr>", unsafe_allow_html=True)
 
 # =========================
-# 🎯 OBJECTIVE
+# 🔄 HOW IT WORKS
 # =========================
-st.markdown("<h2>🎯 Project Objective</h2>", unsafe_allow_html=True)
+st.markdown("<h2>🔄 How the System Works</h2>", unsafe_allow_html=True)
 
 st.write("""
-The main goal of this project is to:
-- Monitor water quality continuously  
-- Detect pollution early  
-- Identify harmful plants automatically  
-- Help protect the Nile ecosystem  
+1. Sensors collect water data  
+2. Camera captures images  
+3. AI analyzes the images  
+4. Data is sent to the dashboard  
+5. User monitors everything in real-time  
 """)
 
 st.markdown("<hr>", unsafe_allow_html=True)
@@ -137,12 +161,18 @@ col1.metric("🌡 Temperature", f"{random.randint(25,32)} °C")
 col2.metric("💧 Turbidity", f"{random.randint(2,8)} NTU")
 col3.metric("⚡ TDS", f"{random.randint(200,400)} ppm")
 
-# AI
+col1, col2, col3 = st.columns(3)
+
+col1.metric("🧪 pH", "7.2")
+col2.metric("☣ Ammonia", "1 mg/L")
+col3.metric("📍 Location", "Cairo")
+
+# AI Detection
 st.subheader("📷 AI Detection")
 
-st.image("https://images.unsplash.com/photo-1501004318641-b39e6451bec6")
-st.success("Detected: Water Hyacinth (ورد النيل)")
-st.warning("⚠️ Indicates possible pollution")
+st.image("https://upload.wikimedia.org/wikipedia/commons/6/6f/Water_hyacinth.jpg")
+st.success("Detected: Water Hyacinth")
+st.warning("⚠️ Pollution Indicator")
 
 st.markdown("<hr>", unsafe_allow_html=True)
 
@@ -152,7 +182,7 @@ st.markdown("<hr>", unsafe_allow_html=True)
 st.markdown("<h2>💡 Conclusion</h2>", unsafe_allow_html=True)
 
 st.write("""
-This project provides a smart and efficient solution for monitoring the Nile River.
+This system provides a smart and efficient way to monitor the Nile.
 
-By combining sensors, AI, and GPS, the system can detect pollution early and support environmental protection efforts.
+It helps detect pollution early, protect the environment, and support sustainable water management.
 """)
